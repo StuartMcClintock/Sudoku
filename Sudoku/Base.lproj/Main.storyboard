@@ -28,7 +28,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Game"/>
                                 <connections>
-                                    <action selector="generateNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Db3-b4-xao"/>
+                                    <action selector="showNewGamePopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mYp-SN-w92"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -46,6 +46,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.875" y="137.5"/>
+        </scene>
+        <!--New Game Popup View Controller-->
+        <scene sceneID="xCa-ai-NoI">
+            <objects>
+                <viewController storyboardIdentifier="NewGamePopup" id="L3X-5R-AJk" customClass="NewGamePopupViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VQ4-bZ-rdU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-bf-7kx">
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to start a new game?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
+                                        <rect key="frame" x="17" y="18.5" width="206" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="206" id="WMg-x2-8IB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDm-ot-jJb">
+                                        <rect key="frame" x="193" y="84.5" width="30" height="30"/>
+                                        <state key="normal" title="No"/>
+                                        <connections>
+                                            <action selector="noPressed:" destination="L3X-5R-AJk" eventType="touchUpInside" id="Qec-gV-wCI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1W-XD-5Rf">
+                                        <rect key="frame" x="17" y="84.5" width="30" height="30"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="yesPressed:" destination="L3X-5R-AJk" eventType="touchUpInside" id="ptc-JH-Xbl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="KDm-ot-jJb" firstAttribute="top" secondItem="gtv-4M-q0E" secondAttribute="bottom" constant="25" id="4jK-za-K3Q"/>
+                                    <constraint firstAttribute="width" constant="240" id="6Vq-iG-feY"/>
+                                    <constraint firstAttribute="height" constant="128" id="GKQ-t2-bU0"/>
+                                    <constraint firstItem="gtv-4M-q0E" firstAttribute="centerY" secondItem="bs5-bf-7kx" secondAttribute="centerY" constant="-25" id="ZmM-IO-4Za"/>
+                                    <constraint firstItem="KDm-ot-jJb" firstAttribute="trailing" secondItem="gtv-4M-q0E" secondAttribute="trailing" id="g22-MH-dlg"/>
+                                    <constraint firstItem="gtv-4M-q0E" firstAttribute="centerX" secondItem="bs5-bf-7kx" secondAttribute="centerX" id="oSv-EV-taP"/>
+                                    <constraint firstItem="R1W-XD-5Rf" firstAttribute="leading" secondItem="gtv-4M-q0E" secondAttribute="leading" id="xud-sE-4aT"/>
+                                    <constraint firstItem="R1W-XD-5Rf" firstAttribute="top" secondItem="KDm-ot-jJb" secondAttribute="top" id="ykk-yH-a2V"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bs5-bf-7kx" firstAttribute="centerY" secondItem="oyb-jC-Gta" secondAttribute="centerY" id="5Qr-Rg-tzK"/>
+                            <constraint firstItem="bs5-bf-7kx" firstAttribute="centerX" secondItem="oyb-jC-Gta" secondAttribute="centerX" id="Njd-Qe-sP7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oyb-jC-Gta"/>
+                    </view>
+                    <connections>
+                        <outlet property="popupView" destination="bs5-bf-7kx" id="ld7-Fh-Qk3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THx-KO-uLQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834.375" y="137.5"/>
         </scene>
     </scenes>
 </document>
