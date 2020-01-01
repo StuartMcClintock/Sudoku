@@ -22,6 +22,44 @@ class ViewController: UIViewController {
         popoverVC.didMove(toParent: self)
     }
     
+    @IBAction func add1(_ sender: Any) {
+        addValToBoard(val: 1)
+    }
+    @IBAction func add2(_ sender: Any) {
+        addValToBoard(val: 2)
+    }
+    @IBAction func add3(_ sender: Any) {
+        addValToBoard(val: 3)
+    }
+    @IBAction func add4(_ sender: Any) {
+        addValToBoard(val: 4)
+    }
+    @IBAction func add5(_ sender: Any) {
+        addValToBoard(val: 5)
+    }
+    @IBAction func add6(_ sender: Any) {
+        addValToBoard(val: 6)
+    }
+    @IBAction func add7(_ sender: Any) {
+        addValToBoard(val: 7)
+    }
+    @IBAction func add8(_ sender: Any) {
+        addValToBoard(val: 8)
+    }
+    @IBAction func add9(_ sender: Any) {
+        addValToBoard(val: 8)
+    }
+    @IBAction func deleteSelectedSpace(_ sender: Any) {
+        addValToBoard(val: 0)
+    }
+    
+    func addValToBoard(val: Int){
+        if del.selectedRow != nil{
+            del.puzzleData[del.currentGameIndex].userVals[del.selectedRow!][del.selectedCol!] = val
+        }
+        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
+    }
+    
     func initializeBoard(){
         del.boardButtons = []
         
@@ -94,7 +132,17 @@ class ViewController: UIViewController {
             senderCol = Int(String(Array(strID)[1]))
         }
         
-        if del.puzzleData[del.currentGameIndex].given[senderRow][senderCol] == 0{
+        if senderRow == del.selectedRow && senderCol == del.selectedCol{
+            del.selectedRow = nil
+            del.selectedCol = nil
+            for row in 0...8{
+                for col in 0...8{
+                    del.boardButtons[row][col].backgroundColor = .white
+                    del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                }
+            }
+        }
+        else if del.puzzleData[del.currentGameIndex].given[senderRow][senderCol] == 0{
             for row in 0...8{
                 for col in 0...8{
                     del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
@@ -110,6 +158,10 @@ class ViewController: UIViewController {
             }
             del.selectedRow = senderRow
             del.selectedCol = senderCol
+        }
+        else{
+            del.selectedRow = nil
+            del.selectedRow = nil
         }
     }
 

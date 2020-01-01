@@ -45,7 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentGameIndex: Int!
     var boardButtons: [[UIButton]]!
     
-    var highlightRowAndCol: bool = true
+    var highlightRowAndCol: Bool = true
+    
+    func reset(){
+        puzzleData[currentGameIndex].userVals = puzzleData[currentGameIndex].given
+        for row in 0...8{
+            for col in 0...8{
+                boardButtons[row][col].backgroundColor = .white
+                boardButtons[row][col].setTitleColor(.black, for: .normal)
+            }
+        }
+        selectedRow = nil
+        selectedCol = nil
+        drawBoard(currentBoardVals: puzzleData[currentGameIndex].userVals)
+    }
     
     func initPuzzleData(){
         puzzleData = []

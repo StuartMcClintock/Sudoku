@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,30 +12,239 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g45-gZ-ETq" userLabel="puzzleWindow">
-                                <rect key="frame" x="12" y="50" width="296" height="296"/>
+                                <rect key="frame" x="39.5" y="50" width="296" height="296"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="296" id="5L6-Jy-VoW"/>
                                     <constraint firstAttribute="height" constant="296" id="KoN-E3-gC2"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jel-rt-ppy">
-                                <rect key="frame" x="43" y="430" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset"/>
-                                <connections>
-                                    <action selector="showNewGamePopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mYp-SN-w92"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-vG-WDa" userLabel="controlView">
+                                <rect key="frame" x="0.0" y="351" width="375" height="316"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-Qs-Ihp">
+                                        <rect key="frame" x="20" y="286" width="61" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="0vS-Fy-U1n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                        <state key="normal" title="Puzzles"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jel-rt-ppy">
+                                        <rect key="frame" x="309" y="275" width="46" height="42"/>
+                                        <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="18"/>
+                                        <state key="normal" title="RESET">
+                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showNewGamePopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mYp-SN-w92"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Tm-hN-7ea" userLabel="inputView">
+                                        <rect key="frame" x="30" y="20" width="315" height="110"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz7-hb-4WC" userLabel="one">
+                                                <rect key="frame" x="0.0" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Z2d-QY-yf9"/>
+                                                    <constraint firstAttribute="height" constant="50" id="cMR-Dr-AOF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="1">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4rS-4y-iRT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFb-V5-td1" userLabel="seven">
+                                                <rect key="frame" x="0.0" y="56" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="HhY-fo-hkM"/>
+                                                    <constraint firstAttribute="width" constant="50" id="Jmx-g5-cCW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="7">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add7:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RWr-dd-X5N"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgL-Fi-qg2" userLabel="eight">
+                                                <rect key="frame" x="53" y="56" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="qEi-Yd-iRi"/>
+                                                    <constraint firstAttribute="width" constant="50" id="xad-fb-RIK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="8">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add8:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S8b-JI-piB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1B-rE-b8G" userLabel="nine">
+                                                <rect key="frame" x="106" y="56" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="HkQ-6a-lbh"/>
+                                                    <constraint firstAttribute="height" constant="50" id="e80-fh-LUU"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="9">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add9:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OWP-Us-P6c"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mud-Ut-aVu" userLabel="two">
+                                                <rect key="frame" x="53" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="la2-b1-dml"/>
+                                                    <constraint firstAttribute="height" constant="50" id="mFB-Kr-xRM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="2">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZEJ-hM-lHW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEo-Ip-CnT" userLabel="three">
+                                                <rect key="frame" x="106" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Shi-se-5TD"/>
+                                                    <constraint firstAttribute="width" constant="50" id="dhY-th-3BZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="3">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Xd-Dr-Ab3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ad-Dd-und" userLabel="four">
+                                                <rect key="frame" x="159" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Pvv-4A-H28"/>
+                                                    <constraint firstAttribute="height" constant="50" id="qqg-tQ-wCf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="4">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aw2-0b-I9o"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-32-VHt" userLabel="five">
+                                                <rect key="frame" x="212" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="XsA-k8-GbJ"/>
+                                                    <constraint firstAttribute="width" constant="50" id="pXA-XS-sjr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="5">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ft6-GM-ddD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fj-7E-YR6" userLabel="six">
+                                                <rect key="frame" x="265" y="3" width="50" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="COA-WF-TTI"/>
+                                                    <constraint firstAttribute="width" constant="50" id="jSi-4i-rri"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="6">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="add6:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oOS-E8-dxl"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFG-4P-3x8" userLabel="delete">
+                                                <rect key="frame" x="159" y="56" width="156" height="50"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="b6E-bZ-cPp"/>
+                                                    <constraint firstAttribute="width" constant="156" id="znn-nS-r1u"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteSelectedSpace:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NYn-bp-loo"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="5Fj-7E-YR6" firstAttribute="leading" secondItem="l1Y-32-VHt" secondAttribute="trailing" constant="3" id="2ZB-44-ZJ0"/>
+                                            <constraint firstItem="mud-Ut-aVu" firstAttribute="top" secondItem="Fz7-hb-4WC" secondAttribute="top" id="6rm-Bu-gCI"/>
+                                            <constraint firstItem="mud-Ut-aVu" firstAttribute="leading" secondItem="Fz7-hb-4WC" secondAttribute="trailing" constant="3" id="6vj-bl-8uw"/>
+                                            <constraint firstItem="AgL-Fi-qg2" firstAttribute="top" secondItem="jFb-V5-td1" secondAttribute="top" id="Cae-vM-z4S"/>
+                                            <constraint firstItem="jFb-V5-td1" firstAttribute="leading" secondItem="Fz7-hb-4WC" secondAttribute="leading" id="DgU-2O-rMt"/>
+                                            <constraint firstItem="l1Y-32-VHt" firstAttribute="leading" secondItem="6Ad-Dd-und" secondAttribute="trailing" constant="3" id="E4w-6Z-YC7"/>
+                                            <constraint firstItem="cEo-Ip-CnT" firstAttribute="top" secondItem="mud-Ut-aVu" secondAttribute="top" id="FCd-RX-xzN"/>
+                                            <constraint firstItem="6Ad-Dd-und" firstAttribute="top" secondItem="cEo-Ip-CnT" secondAttribute="top" id="HPA-k8-Jke"/>
+                                            <constraint firstItem="AgL-Fi-qg2" firstAttribute="leading" secondItem="jFb-V5-td1" secondAttribute="trailing" constant="3" id="JL5-bV-IS4"/>
+                                            <constraint firstItem="cEo-Ip-CnT" firstAttribute="leading" secondItem="mud-Ut-aVu" secondAttribute="trailing" constant="3" id="Kmr-f6-4bQ"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="trailing" secondItem="5Fj-7E-YR6" secondAttribute="trailing" id="L9C-kN-dEz"/>
+                                            <constraint firstItem="6Ad-Dd-und" firstAttribute="leading" secondItem="cEo-Ip-CnT" secondAttribute="trailing" constant="3" id="LN4-gx-PIy"/>
+                                            <constraint firstItem="Fz7-hb-4WC" firstAttribute="top" secondItem="7Tm-hN-7ea" secondAttribute="top" constant="3" id="Ygk-ir-JHP"/>
+                                            <constraint firstItem="Fz7-hb-4WC" firstAttribute="leading" secondItem="7Tm-hN-7ea" secondAttribute="leading" id="YkL-qi-MQB"/>
+                                            <constraint firstItem="jFb-V5-td1" firstAttribute="top" secondItem="Fz7-hb-4WC" secondAttribute="bottom" constant="3" id="caP-g7-ZuU"/>
+                                            <constraint firstAttribute="height" constant="110" id="jvb-bA-mZi"/>
+                                            <constraint firstItem="5Fj-7E-YR6" firstAttribute="top" secondItem="l1Y-32-VHt" secondAttribute="top" id="lkw-wE-XFS"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="top" secondItem="u1B-rE-b8G" secondAttribute="top" id="p47-p4-heg"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="leading" secondItem="AgL-Fi-qg2" secondAttribute="trailing" constant="3" id="pEq-iJ-MXY"/>
+                                            <constraint firstItem="l1Y-32-VHt" firstAttribute="top" secondItem="6Ad-Dd-und" secondAttribute="top" id="sUJ-2Y-MAJ"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="top" secondItem="AgL-Fi-qg2" secondAttribute="top" id="xGm-YN-qWU"/>
+                                            <constraint firstAttribute="width" constant="315" id="zHs-a1-QWT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Tm-hN-7ea" secondAttribute="bottom" constant="39" id="0TV-Tn-aj8"/>
+                                    <constraint firstItem="jel-rt-ppy" firstAttribute="centerY" secondItem="Xrl-Qs-Ihp" secondAttribute="centerY" id="JsM-rm-j8N"/>
+                                    <constraint firstAttribute="trailing" secondItem="jel-rt-ppy" secondAttribute="trailing" constant="20" id="dXQ-0s-HuU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xrl-Qs-Ihp" secondAttribute="bottom" constant="10" id="fzV-pP-Y0y"/>
+                                    <constraint firstItem="Xrl-Qs-Ihp" firstAttribute="leading" secondItem="ZgQ-vG-WDa" secondAttribute="leading" constant="20" id="pNi-V5-60z"/>
+                                    <constraint firstItem="7Tm-hN-7ea" firstAttribute="top" secondItem="ZgQ-vG-WDa" secondAttribute="top" priority="750" constant="20" id="xUp-YQ-TMU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="g45-gZ-ETq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8V5-7N-JQx"/>
-                            <constraint firstItem="g45-gZ-ETq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="gsq-yZ-cwR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZgQ-vG-WDa" secondAttribute="bottom" id="392-ck-3me"/>
+                            <constraint firstItem="ZgQ-vG-WDa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5Pr-xr-yHD"/>
+                            <constraint firstItem="7Tm-hN-7ea" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5qa-Lp-Naa"/>
+                            <constraint firstItem="g45-gZ-ETq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Buj-Sn-zKh"/>
+                            <constraint firstItem="ZgQ-vG-WDa" firstAttribute="top" secondItem="g45-gZ-ETq" secondAttribute="bottom" constant="5" id="OFE-2b-z1o"/>
+                            <constraint firstItem="g45-gZ-ETq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="700" constant="50" id="T2Y-f6-NA4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZgQ-vG-WDa" secondAttribute="trailing" id="qE9-ki-AaQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -45,20 +254,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.875" y="137.5"/>
+            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
         <!--New Game Popup View Controller-->
         <scene sceneID="xCa-ai-NoI">
             <objects>
                 <viewController storyboardIdentifier="NewGamePopup" id="L3X-5R-AJk" customClass="NewGamePopupViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VQ4-bZ-rdU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-bf-7kx">
-                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to reset the game?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to reset this puzzle?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
                                         <rect key="frame" x="17" y="18.5" width="206" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="206" id="WMg-x2-8IB"/>
