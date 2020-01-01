@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g45-gZ-ETq" userLabel="puzzleWindow">
-                                <rect key="frame" x="39.5" y="50" width="296" height="296"/>
+                                <rect key="frame" x="12" y="50" width="296" height="296"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="296" id="5L6-Jy-VoW"/>
@@ -24,10 +24,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-vG-WDa" userLabel="controlView">
-                                <rect key="frame" x="0.0" y="351" width="375" height="316"/>
+                                <rect key="frame" x="0.0" y="351" width="320" height="129"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrl-Qs-Ihp">
-                                        <rect key="frame" x="20" y="286" width="61" height="20"/>
+                                        <rect key="frame" x="20" y="99" width="61" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="0vS-Fy-U1n"/>
                                         </constraints>
@@ -35,7 +35,7 @@
                                         <state key="normal" title="Puzzles"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jel-rt-ppy">
-                                        <rect key="frame" x="309" y="275" width="46" height="42"/>
+                                        <rect key="frame" x="254" y="88" width="46" height="42"/>
                                         <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="18"/>
                                         <state key="normal" title="RESET">
                                             <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,14 +45,13 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Tm-hN-7ea" userLabel="inputView">
-                                        <rect key="frame" x="30" y="20" width="315" height="110"/>
+                                        <rect key="frame" x="2.5" y="-20" width="315" height="110"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz7-hb-4WC" userLabel="one">
                                                 <rect key="frame" x="0.0" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Z2d-QY-yf9"/>
-                                                    <constraint firstAttribute="height" constant="50" id="cMR-Dr-AOF"/>
+                                                    <constraint firstAttribute="width" secondItem="Fz7-hb-4WC" secondAttribute="height" multiplier="1:1" id="8wN-pB-r6o"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="1">
@@ -66,8 +65,7 @@
                                                 <rect key="frame" x="0.0" y="56" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="HhY-fo-hkM"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Jmx-g5-cCW"/>
+                                                    <constraint firstAttribute="width" secondItem="jFb-V5-td1" secondAttribute="height" multiplier="1:1" id="biE-5M-BeW"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="7">
@@ -81,8 +79,7 @@
                                                 <rect key="frame" x="53" y="56" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="qEi-Yd-iRi"/>
-                                                    <constraint firstAttribute="width" constant="50" id="xad-fb-RIK"/>
+                                                    <constraint firstAttribute="width" secondItem="AgL-Fi-qg2" secondAttribute="height" multiplier="1:1" id="yAp-d2-aq7"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="8">
@@ -96,8 +93,7 @@
                                                 <rect key="frame" x="106" y="56" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="HkQ-6a-lbh"/>
-                                                    <constraint firstAttribute="height" constant="50" id="e80-fh-LUU"/>
+                                                    <constraint firstAttribute="width" secondItem="u1B-rE-b8G" secondAttribute="height" multiplier="1:1" id="1Mo-ou-UyQ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="9">
@@ -110,10 +106,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mud-Ut-aVu" userLabel="two">
                                                 <rect key="frame" x="53" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="la2-b1-dml"/>
-                                                    <constraint firstAttribute="height" constant="50" id="mFB-Kr-xRM"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="2">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -126,8 +118,7 @@
                                                 <rect key="frame" x="106" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Shi-se-5TD"/>
-                                                    <constraint firstAttribute="width" constant="50" id="dhY-th-3BZ"/>
+                                                    <constraint firstAttribute="width" secondItem="cEo-Ip-CnT" secondAttribute="height" multiplier="1:1" id="CGB-o4-voi"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="3">
@@ -141,8 +132,7 @@
                                                 <rect key="frame" x="159" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Pvv-4A-H28"/>
-                                                    <constraint firstAttribute="height" constant="50" id="qqg-tQ-wCf"/>
+                                                    <constraint firstAttribute="width" secondItem="6Ad-Dd-und" secondAttribute="height" multiplier="1:1" id="9S1-To-YFp"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="4">
@@ -156,8 +146,7 @@
                                                 <rect key="frame" x="212" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="XsA-k8-GbJ"/>
-                                                    <constraint firstAttribute="width" constant="50" id="pXA-XS-sjr"/>
+                                                    <constraint firstAttribute="width" secondItem="l1Y-32-VHt" secondAttribute="height" multiplier="1:1" id="iWX-1c-aYh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="5">
@@ -171,8 +160,7 @@
                                                 <rect key="frame" x="265" y="3" width="50" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="COA-WF-TTI"/>
-                                                    <constraint firstAttribute="width" constant="50" id="jSi-4i-rri"/>
+                                                    <constraint firstAttribute="width" secondItem="5Fj-7E-YR6" secondAttribute="height" multiplier="1:1" id="RTd-EZ-erE"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="6">
@@ -186,8 +174,7 @@
                                                 <rect key="frame" x="159" y="56" width="156" height="50"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="b6E-bZ-cPp"/>
-                                                    <constraint firstAttribute="width" constant="156" id="znn-nS-r1u"/>
+                                                    <constraint firstAttribute="width" secondItem="GFG-4P-3x8" secondAttribute="height" multiplier="78:25" id="ye6-5V-k2m"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="MuktaMahee-Regular" family="Mukta Mahee" pointSize="20"/>
                                                 <state key="normal" title="Delete">
@@ -200,41 +187,63 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="5Fj-7E-YR6" secondAttribute="trailing" id="1NR-v0-Ab1"/>
                                             <constraint firstItem="5Fj-7E-YR6" firstAttribute="leading" secondItem="l1Y-32-VHt" secondAttribute="trailing" constant="3" id="2ZB-44-ZJ0"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="bottom" secondItem="AgL-Fi-qg2" secondAttribute="bottom" id="5Ry-7y-Nql"/>
                                             <constraint firstItem="mud-Ut-aVu" firstAttribute="top" secondItem="Fz7-hb-4WC" secondAttribute="top" id="6rm-Bu-gCI"/>
                                             <constraint firstItem="mud-Ut-aVu" firstAttribute="leading" secondItem="Fz7-hb-4WC" secondAttribute="trailing" constant="3" id="6vj-bl-8uw"/>
+                                            <constraint firstItem="6Ad-Dd-und" firstAttribute="bottom" secondItem="cEo-Ip-CnT" secondAttribute="bottom" id="7Hj-ZH-FmL"/>
                                             <constraint firstItem="AgL-Fi-qg2" firstAttribute="top" secondItem="jFb-V5-td1" secondAttribute="top" id="Cae-vM-z4S"/>
                                             <constraint firstItem="jFb-V5-td1" firstAttribute="leading" secondItem="Fz7-hb-4WC" secondAttribute="leading" id="DgU-2O-rMt"/>
                                             <constraint firstItem="l1Y-32-VHt" firstAttribute="leading" secondItem="6Ad-Dd-und" secondAttribute="trailing" constant="3" id="E4w-6Z-YC7"/>
+                                            <constraint firstAttribute="trailing" secondItem="GFG-4P-3x8" secondAttribute="trailing" id="EM2-x5-hez"/>
                                             <constraint firstItem="cEo-Ip-CnT" firstAttribute="top" secondItem="mud-Ut-aVu" secondAttribute="top" id="FCd-RX-xzN"/>
                                             <constraint firstItem="6Ad-Dd-und" firstAttribute="top" secondItem="cEo-Ip-CnT" secondAttribute="top" id="HPA-k8-Jke"/>
                                             <constraint firstItem="AgL-Fi-qg2" firstAttribute="leading" secondItem="jFb-V5-td1" secondAttribute="trailing" constant="3" id="JL5-bV-IS4"/>
                                             <constraint firstItem="cEo-Ip-CnT" firstAttribute="leading" secondItem="mud-Ut-aVu" secondAttribute="trailing" constant="3" id="Kmr-f6-4bQ"/>
                                             <constraint firstItem="GFG-4P-3x8" firstAttribute="trailing" secondItem="5Fj-7E-YR6" secondAttribute="trailing" id="L9C-kN-dEz"/>
                                             <constraint firstItem="6Ad-Dd-und" firstAttribute="leading" secondItem="cEo-Ip-CnT" secondAttribute="trailing" constant="3" id="LN4-gx-PIy"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="top" secondItem="5Fj-7E-YR6" secondAttribute="bottom" constant="3" id="OQY-bg-jxh"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="trailing" secondItem="cEo-Ip-CnT" secondAttribute="trailing" id="Sk8-py-QnW"/>
+                                            <constraint firstItem="Fz7-hb-4WC" firstAttribute="trailing" secondItem="jFb-V5-td1" secondAttribute="trailing" id="VPw-cq-bdv"/>
                                             <constraint firstItem="Fz7-hb-4WC" firstAttribute="top" secondItem="7Tm-hN-7ea" secondAttribute="top" constant="3" id="Ygk-ir-JHP"/>
                                             <constraint firstItem="Fz7-hb-4WC" firstAttribute="leading" secondItem="7Tm-hN-7ea" secondAttribute="leading" id="YkL-qi-MQB"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="top" secondItem="l1Y-32-VHt" secondAttribute="bottom" constant="3" id="a7B-G0-BG0"/>
                                             <constraint firstItem="jFb-V5-td1" firstAttribute="top" secondItem="Fz7-hb-4WC" secondAttribute="bottom" constant="3" id="caP-g7-ZuU"/>
+                                            <constraint firstItem="mud-Ut-aVu" firstAttribute="trailing" secondItem="AgL-Fi-qg2" secondAttribute="trailing" id="d4P-IH-GAl"/>
+                                            <constraint firstItem="jFb-V5-td1" firstAttribute="bottom" secondItem="AgL-Fi-qg2" secondAttribute="bottom" id="hHk-eh-hMa"/>
                                             <constraint firstAttribute="height" constant="110" id="jvb-bA-mZi"/>
                                             <constraint firstItem="5Fj-7E-YR6" firstAttribute="top" secondItem="l1Y-32-VHt" secondAttribute="top" id="lkw-wE-XFS"/>
-                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="top" secondItem="u1B-rE-b8G" secondAttribute="top" id="p47-p4-heg"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="top" secondItem="cEo-Ip-CnT" secondAttribute="bottom" constant="3" id="nOl-sU-RSB"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="top" secondItem="6Ad-Dd-und" secondAttribute="bottom" constant="3" id="nzs-vf-A1m"/>
                                             <constraint firstItem="u1B-rE-b8G" firstAttribute="leading" secondItem="AgL-Fi-qg2" secondAttribute="trailing" constant="3" id="pEq-iJ-MXY"/>
+                                            <constraint firstItem="GFG-4P-3x8" firstAttribute="leading" secondItem="6Ad-Dd-und" secondAttribute="leading" id="prN-Cr-NYM"/>
                                             <constraint firstItem="l1Y-32-VHt" firstAttribute="top" secondItem="6Ad-Dd-und" secondAttribute="top" id="sUJ-2Y-MAJ"/>
+                                            <constraint firstItem="AgL-Fi-qg2" firstAttribute="top" secondItem="mud-Ut-aVu" secondAttribute="bottom" constant="3" id="vkc-Rb-Kmt"/>
                                             <constraint firstItem="u1B-rE-b8G" firstAttribute="top" secondItem="AgL-Fi-qg2" secondAttribute="top" id="xGm-YN-qWU"/>
+                                            <constraint firstItem="u1B-rE-b8G" firstAttribute="leading" secondItem="cEo-Ip-CnT" secondAttribute="leading" id="xUe-Yw-Lm7"/>
                                             <constraint firstAttribute="width" constant="315" id="zHs-a1-QWT"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Tm-hN-7ea" secondAttribute="bottom" constant="39" id="0TV-Tn-aj8"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7Tm-hN-7ea" secondAttribute="bottom" priority="750" constant="39" id="0TV-Tn-aj8"/>
+                                    <constraint firstItem="7Tm-hN-7ea" firstAttribute="leading" secondItem="ZgQ-vG-WDa" secondAttribute="leading" constant="2.5" id="1GS-Zn-HuU"/>
                                     <constraint firstItem="jel-rt-ppy" firstAttribute="centerY" secondItem="Xrl-Qs-Ihp" secondAttribute="centerY" id="JsM-rm-j8N"/>
                                     <constraint firstAttribute="trailing" secondItem="jel-rt-ppy" secondAttribute="trailing" constant="20" id="dXQ-0s-HuU"/>
                                     <constraint firstAttribute="bottom" secondItem="Xrl-Qs-Ihp" secondAttribute="bottom" constant="10" id="fzV-pP-Y0y"/>
                                     <constraint firstItem="Xrl-Qs-Ihp" firstAttribute="leading" secondItem="ZgQ-vG-WDa" secondAttribute="leading" constant="20" id="pNi-V5-60z"/>
-                                    <constraint firstItem="7Tm-hN-7ea" firstAttribute="top" secondItem="ZgQ-vG-WDa" secondAttribute="top" priority="750" constant="20" id="xUp-YQ-TMU"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Tm-hN-7ea" secondAttribute="trailing" constant="2.5" id="t45-08-Ijn"/>
+                                    <constraint firstItem="7Tm-hN-7ea" firstAttribute="top" secondItem="ZgQ-vG-WDa" secondAttribute="top" priority="700" constant="20" id="xUp-YQ-TMU"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game 1 in progress..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="28" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RVK-Es-4UD">
+                                <rect key="frame" x="16" y="5" width="288" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -243,8 +252,12 @@
                             <constraint firstItem="7Tm-hN-7ea" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5qa-Lp-Naa"/>
                             <constraint firstItem="g45-gZ-ETq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Buj-Sn-zKh"/>
                             <constraint firstItem="ZgQ-vG-WDa" firstAttribute="top" secondItem="g45-gZ-ETq" secondAttribute="bottom" constant="5" id="OFE-2b-z1o"/>
-                            <constraint firstItem="g45-gZ-ETq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="700" constant="50" id="T2Y-f6-NA4"/>
+                            <constraint firstItem="g45-gZ-ETq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" priority="750" constant="50" id="T2Y-f6-NA4"/>
+                            <constraint firstItem="RVK-Es-4UD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="XpG-rU-N6U"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RVK-Es-4UD" secondAttribute="trailing" constant="16" id="ZoS-is-raw"/>
+                            <constraint firstItem="g45-gZ-ETq" firstAttribute="top" secondItem="RVK-Es-4UD" secondAttribute="bottom" constant="10" id="e6t-UB-lN4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZgQ-vG-WDa" secondAttribute="trailing" id="qE9-ki-AaQ"/>
+                            <constraint firstItem="RVK-Es-4UD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="tS4-HE-h9h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -254,18 +267,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+            <point key="canvasLocation" x="135" y="136.25"/>
         </scene>
         <!--New Game Popup View Controller-->
         <scene sceneID="xCa-ai-NoI">
             <objects>
                 <viewController storyboardIdentifier="NewGamePopup" id="L3X-5R-AJk" customClass="NewGamePopupViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VQ4-bZ-rdU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-bf-7kx">
-                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to reset this puzzle?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
                                         <rect key="frame" x="17" y="18.5" width="206" height="41"/>
