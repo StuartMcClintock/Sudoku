@@ -10,9 +10,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     var del: AppDelegate!
     
+    @IBOutlet weak var prevButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var gameStateLabel: UILabel!
     @IBOutlet weak var puzzleWindow: UIView!
     @IBAction func showNewGamePopup(_ sender: Any) {
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewGamePopup")
@@ -22,35 +25,69 @@ class ViewController: UIViewController {
         popoverVC.didMove(toParent: self)
     }
     
+
+    @IBAction func nextTapped(_ sender: Any) {
+        del.currentGameIndex += 1
+        if del.currentGameIndex == del.puzzleData.count - 1{
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = .lightGray
+        }
+        prevButton.accessibilityRespondsToUserInteraction = true
+        prevButton.backgroundColor = .blue
+        
+        initializeBoard()
+        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
+    }
+    
+    @IBAction func prevTapped(_ sender: Any) {
+        del.currentGameIndex -= 1
+        if del.currentGameIndex == 0{
+            prevButton.isEnabled = false
+            prevButton.backgroundColor = .lightGray
+        }
+        nextButton.accessibilityRespondsToUserInteraction = true
+        nextButton.backgroundColor = .blue
+    }
+    
     @IBAction func add1(_ sender: Any) {
         addValToBoard(val: 1)
+        checkForWin()
     }
     @IBAction func add2(_ sender: Any) {
         addValToBoard(val: 2)
+        checkForWin()
     }
     @IBAction func add3(_ sender: Any) {
         addValToBoard(val: 3)
+        checkForWin()
     }
     @IBAction func add4(_ sender: Any) {
         addValToBoard(val: 4)
+        checkForWin()
     }
     @IBAction func add5(_ sender: Any) {
         addValToBoard(val: 5)
+        checkForWin()
     }
     @IBAction func add6(_ sender: Any) {
         addValToBoard(val: 6)
+        checkForWin()
     }
     @IBAction func add7(_ sender: Any) {
         addValToBoard(val: 7)
+        checkForWin()
     }
     @IBAction func add8(_ sender: Any) {
         addValToBoard(val: 8)
+        checkForWin()
     }
     @IBAction func add9(_ sender: Any) {
-        addValToBoard(val: 8)
+        addValToBoard(val: 9)
+        checkForWin()
     }
     @IBAction func deleteSelectedSpace(_ sender: Any) {
         addValToBoard(val: 0)
+        checkForWin()
     }
     
     func addValToBoard(val: Int){
@@ -108,6 +145,9 @@ class ViewController: UIViewController {
         let app = UIApplication.shared
         del = app.delegate as? AppDelegate
         
+        nextButton.backgroundColor = .blue
+        prevButton.backgroundColor = .lightGray
+        
         del.currentGameIndex = 0
         del.initPuzzleData()
         
@@ -118,7 +158,40 @@ class ViewController: UIViewController {
         
     }
 
+    func checkForWin(){
+        var completed: Bool = true
+        var won: Bool = true
+        let name = del.puzzleData[del.currentGameIndex].name
+        for row in 0...8{
+            for col in 0...8{
+                if del.puzzleData[del.currentGameIndex].userVals[row][col] == 0{
+                    completed = false
+                    won = false
+                }
+                else if del.puzzleData[del.currentGameIndex].userVals[row][col] != del.puzzleData[del.currentGameIndex].solution[row][col]{
+                    won = false
+                }
+            }
+        }
+        var text: String = name
+        if !completed{
+            text += " in progress"
+        }
+        else{
+            if won{
+                text += " was completed!"
+            }
+            else{
+                text += " is incorrect"
+            }
+        }
+        
+        gameStateLabel.text = text
+    }
+    
     @objc func buttonPressed(sender: UIButton){
+        checkForWin()
+        
         let strID = String(sender.tag)
         var senderRow: Int!
         var senderCol: Int!
@@ -163,6 +236,7 @@ class ViewController: UIViewController {
             del.selectedRow = nil
             del.selectedRow = nil
         }
+        
     }
 
 }
