@@ -22,17 +22,13 @@ class ViewController: UIViewController {
         popoverVC.didMove(toParent: self)
     }
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let app = UIApplication.shared
         del = app.delegate as? AppDelegate
         
-        
-        del.solutionBoard = del.blankBoard
+        del.currentGameIndex = 0
+        del.initPuzzleData()
         
         puzzleWindow.layer.borderWidth = 4.0
         
@@ -63,16 +59,43 @@ class ViewController: UIViewController {
                 currentButton.tag = Int(String(row)+String(col))!
                 currentButton.setTitleColor(.black, for: .normal)
                 currentButton.setTitleColor(.darkGray, for: .highlighted)
+                currentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
                 boxList[Int(row/3)][Int(col/3)].addSubview(currentButton)
                 currentRow.append(currentButton)
             }
             del.boardButtons.append(currentRow)
         }
         
-        del.currentBoardVals = del.blankBoard
+        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
         
     }
 
+    @objc func buttonPressed(sender: UIButton){
+        let strID = String(sender.tag)
+        var senderRow: Int!
+        var senderCol: Int!
+        if strID.count == 1{
+            senderRow = 0
+            senderCol = Int(strID)
+        }
+        else{
+            senderRow = Int(String(Array(strID)[0]))
+            senderCol = Int(String(Array(strID)[1]))
+        }
+        for row in 0...8{
+            for col in 0...8{
+                del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
+                del.boardButtons[senderRow][senderCol].setTitleColor(.white, for: .normal)
+                if row != senderRow || col != senderCol{
+                    del.boardButtons[row][col].backgroundColor = .white
+                    del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                }
+                if row == senderRow || col == senderCol{
+                    del.boardButtons[row][col].backgroundColor = UIColor(red: 161/255, green: 195/255, blue: 235/255, alpha: 1.0)
+                }
+            }
+        }
+    }
 
 }
 

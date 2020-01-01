@@ -21,8 +21,7 @@ class NewGamePopupViewController: UIViewController {
     @IBAction func yesPressed(_ sender: Any) {
         self.view.removeFromSuperview()
         self.removeAnimate()
-        del.generateNewUnsolvedBoard()
-        del.drawBoard()
+        //del.drawBoard()
     }
     
     

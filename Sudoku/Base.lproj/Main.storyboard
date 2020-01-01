@@ -24,9 +24,9 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jel-rt-ppy">
-                                <rect key="frame" x="25" y="430" width="75" height="30"/>
+                                <rect key="frame" x="43" y="430" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Game"/>
+                                <state key="normal" title="Reset"/>
                                 <connections>
                                     <action selector="showNewGamePopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mYp-SN-w92"/>
                                 </connections>
@@ -58,7 +58,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-bf-7kx">
                                 <rect key="frame" x="40" y="176" width="240" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to start a new game?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure that you want to reset the game?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtv-4M-q0E">
                                         <rect key="frame" x="17" y="18.5" width="206" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="206" id="WMg-x2-8IB"/>

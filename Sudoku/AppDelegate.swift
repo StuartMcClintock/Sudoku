@@ -11,198 +11,124 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    enum Difficulty{
+        case veryEasy
+        case easy
+        case medium
+        case hard
+        case notSet
+    }
+    
+    struct Puzzle{
+        var given: [[Int]]
+        var solution: [[Int]]
+        var userVals: [[Int]]
+        var diff: Difficulty
+        var name: String
+        
+        func checkSolved() -> Bool{
+            return solution == userVals
+        }
+        init(gvn: [[Int]], sol: [[Int]], uv: [[Int]], d: Difficulty, n: String){
+            given = gvn
+            solution = sol
+            userVals = uv
+            diff = d
+            name = n
+        }
+    }
+    
+    var puzzleData: [Puzzle]!
+    
+    var currentGameIndex: Int!
+    
     var boardButtons: [[UIButton]]!
     
-    var solutionBoard: [[Int]]!
-    
-    var currentBoardVals: [[Int]]!
-
-    var boardOptionsFound: Int = 0
-    var numberList: [Int] = [1,2,3,4,5,6,7,8,9]
-    let blankBoard: [[Int]] = [
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0]
-    ]
-    
-    func seedBoard(){
-        solutionBoard = blankBoard
-        for i in 1...9{
-            solutionBoard[Int.random(in: 0...8)][Int.random(in: 0...8)] = i
-        }
-    }
-    
-    func generateNewUnsolvedBoard(){
-        //seedBoard()
-        solutionBoard = blankBoard
-        print(fillBoard(board: &solutionBoard))
-        
-        currentBoardVals = solutionBoard
-        /*var runs: Int = 5
-        while runs > 0{
-            var row: Int = Int.random(in:0...8)
-            var col: Int = Int.random(in:0...8)
-            while currentBoardVals[row][col] == 0{
-                row = Int.random(in:0...8)
-                col = Int.random(in:0...8)
+    func initPuzzleData(){
+        puzzleData = []
+        var rawData: String = ""
+        if let filepath = Bundle.main.path(forResource: "puzzleData", ofType: "txt") {
+            do {
+                rawData = try String(contentsOfFile: filepath)
+            } catch {
+                print("file could not be loaded")
             }
-            let originalVal: Int = currentBoardVals[row][col]
-            currentBoardVals[row][col] = 0
+        } else {
+            print("file could not be found")
+        }
+        
+        let dataList = rawData.components(separatedBy:"*****\n")
+        for puzzleInfo in dataList{
+            let infoArr = puzzleInfo.components(separatedBy:"\n")
+            let name = infoArr[0]
+            var diff: Difficulty = .notSet
+            let diffStr = infoArr[1]
+            if diffStr == "veryEasy"{
+                diff = .veryEasy
+            }
+            if diffStr == "easy"{
+                diff = .easy
+            }
+            if diffStr == "medium"{
+                diff = .medium
+            }
+            if diffStr == "hard"{
+                diff = .hard
+            }
             
-            boardOptionsFound = 0
-            findBoardOptions(board: currentBoardVals)
-            if boardOptionsFound != 1{
-                currentBoardVals[row][col] = originalVal
-                runs -= 1
-            }
-        }*/
-        
+            //print(infoArr)
+            
+            let givenVals = [(infoArr[2].components(separatedBy: ",")).map{Int($0)!},(infoArr[3].components(separatedBy: ",")).map{Int($0)!},(infoArr[4].components(separatedBy: ",")).map{Int($0)!},(infoArr[5].components(separatedBy: ",")).map{Int($0)!},(infoArr[6].components(separatedBy: ",")).map{Int($0)!},(infoArr[7].components(separatedBy: ",")).map{Int($0)!},(infoArr[8].components(separatedBy: ",")).map{Int($0)!},(infoArr[9].components(separatedBy: ",")).map{Int($0)!},(infoArr[10].components(separatedBy: ",")).map{Int($0)!}]
+            
+            let solutions = [infoArr[12].components(separatedBy: ",").map{Int($0)!},infoArr[13].components(separatedBy: ",").map{Int($0)!},infoArr[14].components(separatedBy: ",").map{Int($0)!},infoArr[15].components(separatedBy: ",").map{Int($0)!},infoArr[16].components(separatedBy: ",").map{Int($0)!},infoArr[17].components(separatedBy: ",").map{Int($0)!},infoArr[18].components(separatedBy: ",").map{Int($0)!},infoArr[19].components(separatedBy: ",").map{Int($0)!},infoArr[20].components(separatedBy: ",").map{Int($0)!}]
+            
+            let newPuzzle = Puzzle(gvn: givenVals, sol: solutions, uv: givenVals, d: diff, n: name)
+            puzzleData.append(newPuzzle)
+            
+            
+        }
     }
     
-    func checkBoardFull(board: [[Int]]) -> Bool{
-        for row in 0...8{
-            for col in 0...8{
-                if board[row][col] == 0{
-                    return false
-                }
+    func findBoxVals(board: [[Int]], row: Int, col: Int) -> [Int]{
+        var boxVals: [Int]
+        if row < 3{
+            if col < 3{
+                boxVals = Array(board[0][0...2] + board[1][0...2] + board[2][0...2])
+            }
+            else if col < 6{
+                boxVals = Array(board[0][3...5] + board[1][3...5] + board[2][3...5])
+            }
+            else{
+                boxVals = Array(board[0][6...8] + board[1][6...8] + board[2][6...8])
             }
         }
-        return true
-    }
-    
-    func fillBoard(board: inout [[Int]]) -> Bool{
-        var row: Int = 0
-        var col: Int = 0
-        for i in 0...80{
-            row = Int(i/9)
-            col = i%9
-            for val in 1...9{
-                if !board[row].contains(val) && ![board[0][col], board[1][col], board[2][col], board[3][col], board[4][col], board[5][col], board[6][col], board[7][col], board[8][col]].contains(val){
-                    var boxVals: [Int] = []
-                    if row < 3{
-                        if col < 3{
-                            boxVals = Array(board[0][0...2] + board[1][0...2] + board[2][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[0][3...5] + board[1][3...5] + board[2][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[0][6...8] + board[1][6...8] + board[2][6...8])
-                        }
-                    }
-                    else if row < 6{
-                        if col < 3{
-                            boxVals = Array(board[3][0...2] + board[4][0...2] + board[5][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[3][3...5] + board[4][3...5] + board[5][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[3][6...8] + board[4][6...8] + board[5][6...8])
-                        }
-                    }
-                    else{
-                        if col < 3{
-                            boxVals = Array(board[6][0...2] + board[7][0...2] + board[8][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[6][3...5] + board[7][3...5] + board[8][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[6][6...8] + board[7][6...8] + board[8][6...8])
-                        }
-                    }
-                    if !boxVals.contains(val){
-                        board[row][col]=val
-                        if checkBoardFull(board: board){
-                            return true
-                        }
-                        else{
-                            if fillBoard(board: &board){
-                                return true
-                            }
-                        }
-                    }
-                }
+        else if row < 6{
+            if col < 3{
+                boxVals = Array(board[3][0...2] + board[4][0...2] + board[5][0...2])
             }
-            break
-        }
-        board[row][col] = 0
-        return false
-    }
-    
-    func findBoardOptions(board: [[Int]]) -> Bool{
-        var row: Int = 0
-        var col: Int = 0
-        for i in 0...80{
-            row = Int(i/9)
-            col = i%9
-            numberList.shuffle()
-            for val in numberList{
-                if !board[row].contains(val) && ![board[0][col], board[1][col], board[2][col], board[3][col], board[4][col], board[5][col], board[6][col], board[7][col], board[8][col]].contains(val){
-                    var boxVals: [Int] = []
-                    if row < 3{
-                        if col < 3{
-                            boxVals = Array(board[0...2][0][0...2] + board[0...2][1][0...2] + board[0...2][2][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[0...2][0][3...5] + board[0...2][1][3...5] + board[0...2][2][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[0...2][0][6...8] + board[0...2][1][6...8] + board[0...2][2][6...8])
-                        }
-                    }
-                    else if row < 6{
-                        if col < 3{
-                            boxVals = Array(board[3...5][3][0...2] + board[3...5][4][0...2] + board[3...5][5][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[3...5][3][3...5] + board[3...5][4][3...5] + board[3...5][5][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[3...5][3][6...8] + board[3...5][4][6...8] + board[3...5][5][6...8])
-                        }
-                    }
-                    else{
-                        if col < 3{
-                            boxVals = Array(board[6...8][6][0...2] + board[6...8][7][0...2] + board[6...8][8][0...2])
-                        }
-                        else if col < 6{
-                            boxVals = Array(board[6...8][6][3...5] + board[6...8][7][3...5] + board[6...8][8][3...5])
-                        }
-                        else{
-                            boxVals = Array(board[6...8][6][6...8] + board[6...8][7][6...8] + board[6...8][8][6...8])
-                        }
-                    }
-                    if !boxVals.contains(val){
-                        var boardCopy: [[Int]] = board
-                        boardCopy[row][col]=val
-                        if checkBoardFull(board: boardCopy){
-                            boardOptionsFound += 1
-                            break
-                        }
-                        else{
-                            if findBoardOptions(board: board){
-                                return true
-                            }
-                        }
-                    }
-                }
-                break
+            else if col < 6{
+                boxVals = Array(board[3][3...5] + board[4][3...5] + board[5][3...5])
+            }
+            else{
+                boxVals = Array(board[3][6...8] + board[4][6...8] + board[5][6...8])
             }
         }
-        var boardCopy: [[Int]] = board
-        boardCopy[row][col] = 0
-        return false
+        else{
+            if col < 3{
+                boxVals = Array(board[6][0...2] + board[7][0...2] + board[8][0...2])
+            }
+            else if col < 6{
+                boxVals = Array(board[6][3...5] + board[7][3...5] + board[8][3...5])
+            }
+            else{
+                boxVals = Array(board[6][6...8] + board[7][6...8] + board[8][6...8])
+            }
+        }
+        return boxVals
     }
     
-    func drawBoard(){
+    
+    func drawBoard(currentBoardVals: [[Int]]){
         for row in 0...8{
             for col in 0...8{
                 var newVal: String = String(currentBoardVals[row][col])
