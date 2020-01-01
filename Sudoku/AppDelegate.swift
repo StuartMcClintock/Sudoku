@@ -38,11 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    
+    var selectedRow: Int?
+    var selectedCol: Int?
     var puzzleData: [Puzzle]!
-    
     var currentGameIndex: Int!
-    
     var boardButtons: [[UIButton]]!
+    
+    var highlightRowAndCol: bool = true
     
     func initPuzzleData(){
         puzzleData = []

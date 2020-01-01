@@ -22,6 +22,49 @@ class ViewController: UIViewController {
         popoverVC.didMove(toParent: self)
     }
     
+    func initializeBoard(){
+        del.boardButtons = []
+        
+        var boxList: [[UIView]] = []
+        for superRow in 0...2{
+            var currentRow: [UIView] = []
+            for superCol in 0...2{
+                let newView: UIView = UIView()
+                newView.frame = CGRect(x:superCol*96+4, y:superRow*96+4, width:96, height:96)
+                newView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
+                newView.layer.borderWidth = 2.0
+                puzzleWindow.addSubview(newView)
+                currentRow.append(newView)
+            }
+            boxList.append(currentRow)
+        }
+        
+        for row in 0...8{
+            var currentRow: [UIButton] = []
+            for col in 0...8{
+                let currentButton: UIButton = UIButton()
+                currentButton.setTitle("0", for: .normal)
+                if del.puzzleData[del.currentGameIndex].given[row][col] == 0{
+                    currentButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+                }
+                else{
+                    currentButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+                }
+                
+                currentButton.backgroundColor = .white
+                currentButton.layer.borderWidth = 1.0
+                currentButton.layer.borderColor = .init(srgbRed: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+                currentButton.frame = CGRect(x:col%3*32, y:row%3*32, width: 32, height: 32)
+                currentButton.tag = Int(String(row)+String(col))!
+                currentButton.setTitleColor(.black, for: .normal)
+                currentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+                boxList[Int(row/3)][Int(col/3)].addSubview(currentButton)
+                currentRow.append(currentButton)
+            }
+            del.boardButtons.append(currentRow)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let app = UIApplication.shared
@@ -32,40 +75,7 @@ class ViewController: UIViewController {
         
         puzzleWindow.layer.borderWidth = 4.0
         
-        var boxList: [[UIView]] = []
-        for superRow in 0...2{
-            var currentRow: [UIView] = []
-            for superCol in 0...2{
-                let newView: UIView = UIView()
-                newView.frame = CGRect(x:superCol*90, y:superRow*90, width:90, height:90)
-                newView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-                newView.layer.borderWidth = 2.0
-                puzzleWindow.addSubview(newView)
-                currentRow.append(newView)
-            }
-            boxList.append(currentRow)
-        }
-        
-        del.boardButtons = []
-        for row in 0...8{
-            var currentRow: [UIButton] = []
-            for col in 0...8{
-                let currentButton: UIButton = UIButton()
-                currentButton.setTitle("0", for: .normal)
-                currentButton.backgroundColor = .white
-                currentButton.layer.borderWidth = 1.0
-                currentButton.layer.borderColor = .init(srgbRed: 0.0, green: 0.0, blue: 0.0, alpha: 1)
-                currentButton.frame = CGRect(x:col%3*30, y:row%3*30, width: 30, height: 30)
-                currentButton.tag = Int(String(row)+String(col))!
-                currentButton.setTitleColor(.black, for: .normal)
-                currentButton.setTitleColor(.darkGray, for: .highlighted)
-                currentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-                boxList[Int(row/3)][Int(col/3)].addSubview(currentButton)
-                currentRow.append(currentButton)
-            }
-            del.boardButtons.append(currentRow)
-        }
-        
+        initializeBoard()
         del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
         
     }
@@ -74,6 +84,7 @@ class ViewController: UIViewController {
         let strID = String(sender.tag)
         var senderRow: Int!
         var senderCol: Int!
+        
         if strID.count == 1{
             senderRow = 0
             senderCol = Int(strID)
@@ -82,18 +93,23 @@ class ViewController: UIViewController {
             senderRow = Int(String(Array(strID)[0]))
             senderCol = Int(String(Array(strID)[1]))
         }
-        for row in 0...8{
-            for col in 0...8{
-                del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
-                del.boardButtons[senderRow][senderCol].setTitleColor(.white, for: .normal)
-                if row != senderRow || col != senderCol{
-                    del.boardButtons[row][col].backgroundColor = .white
-                    del.boardButtons[row][col].setTitleColor(.black, for: .normal)
-                }
-                if row == senderRow || col == senderCol{
-                    del.boardButtons[row][col].backgroundColor = UIColor(red: 161/255, green: 195/255, blue: 235/255, alpha: 1.0)
+        
+        if del.puzzleData[del.currentGameIndex].given[senderRow][senderCol] == 0{
+            for row in 0...8{
+                for col in 0...8{
+                    del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
+                    del.boardButtons[senderRow][senderCol].setTitleColor(.white, for: .normal)
+                    if row != senderRow || col != senderCol{
+                        del.boardButtons[row][col].backgroundColor = .white
+                        del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                    }
+                    if del.highlightRowAndCol && (row == senderRow || col == senderCol){
+                        del.boardButtons[row][col].backgroundColor = UIColor(red: 161/255, green: 195/255, blue: 235/255, alpha: 1.0)
+                    }
                 }
             }
+            del.selectedRow = senderRow
+            del.selectedCol = senderCol
         }
     }
 
