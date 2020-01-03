@@ -124,11 +124,13 @@ class ViewController: UIViewController {
             for col in 0...8{
                 let currentButton: UIButton = UIButton()
                 currentButton.setTitle("0", for: .normal)
-                if del.puzzleData[del.currentGameIndex].given[row][col] == 0{
+                if del.getCurrentPuzzle().given[row][col] == 0{
                     currentButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+                    currentButton.setTitleColor(.darkGray, for: .normal)
                 }
                 else{
                     currentButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+                    currentButton.setTitleColor(.black, for: .normal)
                 }
                 
                 currentButton.backgroundColor = .white
@@ -136,7 +138,6 @@ class ViewController: UIViewController {
                 currentButton.layer.borderColor = .init(srgbRed: 0.0, green: 0.0, blue: 0.0, alpha: 1)
                 currentButton.frame = CGRect(x:col%3*32, y:row%3*32, width: 32, height: 32)
                 currentButton.tag = Int(String(row)+String(col))!
-                currentButton.setTitleColor(.black, for: .normal)
                 currentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
                 boxList[Int(row/3)][Int(col/3)].addSubview(currentButton)
                 currentRow.append(currentButton)
@@ -169,14 +170,14 @@ class ViewController: UIViewController {
     func checkForWin(){
         var completed: Bool = true
         var won: Bool = true
-        let name = del.puzzleData[del.currentGameIndex].name
+        let name = del.getCurrentPuzzle().name
         for row in 0...8{
             for col in 0...8{
-                if del.puzzleData[del.currentGameIndex].userVals[row][col] == 0{
+                if del.getCurrentPuzzle().userVals[row][col] == 0{
                     completed = false
                     won = false
                 }
-                else if del.puzzleData[del.currentGameIndex].userVals[row][col] != del.puzzleData[del.currentGameIndex].solution[row][col]{
+                else if del.getCurrentPuzzle().userVals[row][col] != del.getCurrentPuzzle().solution[row][col]{
                     won = false
                 }
             }
@@ -219,16 +220,26 @@ class ViewController: UIViewController {
             for row in 0...8{
                 for col in 0...8{
                     del.boardButtons[row][col].backgroundColor = .white
-                    del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                    if del.getCurrentPuzzle().given[row][col] != 0{ // Maybe simplify by creating subclass of UIButton for board buttons that has an attribute that describes if a button displays an unchangeable number or not
+                        del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                    }
+                    else{
+                        del.boardButtons[row][col].setTitleColor(.darkGray, for: .normal)
+                    }
                 }
             }
         }
-        else if del.puzzleData[del.currentGameIndex].given[senderRow][senderCol] == 0{
+        else if del.getCurrentPuzzle().given[senderRow][senderCol] == 0{
             for row in 0...8{
                 for col in 0...8{
                     if row != senderRow || col != senderCol{
                         del.boardButtons[row][col].backgroundColor = .white
-                        del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                        if del.getCurrentPuzzle().given[row][col] != 0{
+                            del.boardButtons[row][col].setTitleColor(.black, for: .normal)
+                        }
+                        else{
+                            del.boardButtons[row][col].setTitleColor(.darkGray, for: .normal)
+                        }
                     }
                     if del.highlightRowAndCol && (row == senderRow || col == senderCol){
                         del.boardButtons[row][col].backgroundColor = UIColor(red: 161/255, green: 195/255, blue: 235/255, alpha: 1.0)

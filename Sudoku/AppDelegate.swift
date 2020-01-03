@@ -52,9 +52,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for row in 0...8{
             for col in 0...8{
                 boardButtons[row][col].backgroundColor = .white
-                boardButtons[row][col].setTitleColor(.black, for: .normal)
+                if puzzleData[currentGameIndex].given[row][col] != 0{
+                    boardButtons[row][col].setTitleColor(.black, for: .normal)
+                }
+                else{
+                    boardButtons[row][col].setTitleColor(.darkGray, for: .normal)
+                }
             }
         }
+        
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey:puzzleData[currentGameIndex].name)
+        
         selectedRow = nil
         selectedCol = nil
         drawBoard()
@@ -66,6 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         defaults.set(puzzleData[currentGameIndex].userVals, forKey:puzzleData[currentGameIndex].name)
     }
     
+    func getCurrentPuzzle() -> Puzzle{
+        return puzzleData[currentGameIndex]
+    }
     
     func initPuzzleData(){
         puzzleData = []
