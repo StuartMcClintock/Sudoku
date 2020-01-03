@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+@available(iOS 13.0, *) class ViewController: UIViewController {
     var del: AppDelegate!
     
     @IBOutlet weak var prevButton: UIButton!
@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var gameStateLabel: UILabel!
     @IBOutlet weak var puzzleWindow: UIView!
+    @available(iOS 13.0, *)
     @IBAction func showNewGamePopup(_ sender: Any) {
         let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewGamePopup")
         self.addChild(popoverVC)
@@ -102,7 +103,7 @@ class ViewController: UIViewController {
         del.drawBoard()
     }
     
-    func initializeBoard(){
+    @available(iOS 13.0, *) func initializeBoard(){
         del.boardButtons = []
         
         var boxList: [[UIView]] = []
