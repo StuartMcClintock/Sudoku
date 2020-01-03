@@ -57,8 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         selectedRow = nil
         selectedCol = nil
-        drawBoard(currentBoardVals: puzzleData[currentGameIndex].userVals)
+        drawBoard()
     }
+    
+    func setSelectedValue(val: Int){
+        puzzleData[currentGameIndex].userVals[selectedRow!][selectedCol!] = val
+    }
+    
+    
     
     func initPuzzleData(){
         puzzleData = []
@@ -144,7 +150,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func drawBoard(currentBoardVals: [[Int]]){
+    func drawBoard(){
+        let currentBoardVals = puzzleData[currentGameIndex].userVals
         for row in 0...8{
             for col in 0...8{
                 var newVal: String = String(currentBoardVals[row][col])

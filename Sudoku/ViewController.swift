@@ -32,11 +32,12 @@ class ViewController: UIViewController {
             nextButton.isEnabled = false
             nextButton.backgroundColor = .lightGray
         }
-        prevButton.accessibilityRespondsToUserInteraction = true
+        prevButton.isEnabled = true
         prevButton.backgroundColor = .blue
         
+        checkForWin()
         initializeBoard()
-        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
+        del.drawBoard()
     }
     
     @IBAction func prevTapped(_ sender: Any) {
@@ -45,8 +46,12 @@ class ViewController: UIViewController {
             prevButton.isEnabled = false
             prevButton.backgroundColor = .lightGray
         }
-        nextButton.accessibilityRespondsToUserInteraction = true
+        nextButton.isEnabled = true
         nextButton.backgroundColor = .blue
+        
+        checkForWin()
+        initializeBoard()
+        del.drawBoard()
     }
     
     @IBAction func add1(_ sender: Any) {
@@ -92,9 +97,9 @@ class ViewController: UIViewController {
     
     func addValToBoard(val: Int){
         if del.selectedRow != nil{
-            del.puzzleData[del.currentGameIndex].userVals[del.selectedRow!][del.selectedCol!] = val
+            del.setSelectedValue(val: val)
         }
-        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
+        del.drawBoard()
     }
     
     func initializeBoard(){
@@ -154,7 +159,7 @@ class ViewController: UIViewController {
         puzzleWindow.layer.borderWidth = 4.0
         
         initializeBoard()
-        del.drawBoard(currentBoardVals: del.puzzleData[del.currentGameIndex].userVals)
+        del.drawBoard()
         
     }
 
@@ -218,8 +223,6 @@ class ViewController: UIViewController {
         else if del.puzzleData[del.currentGameIndex].given[senderRow][senderCol] == 0{
             for row in 0...8{
                 for col in 0...8{
-                    del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
-                    del.boardButtons[senderRow][senderCol].setTitleColor(.white, for: .normal)
                     if row != senderRow || col != senderCol{
                         del.boardButtons[row][col].backgroundColor = .white
                         del.boardButtons[row][col].setTitleColor(.black, for: .normal)
@@ -229,6 +232,8 @@ class ViewController: UIViewController {
                     }
                 }
             }
+            del.boardButtons[senderRow][senderCol].backgroundColor = UIColor(red: 52/255, green: 125/255, blue: 255/255, alpha: 1.0)
+            del.boardButtons[senderRow][senderCol].setTitleColor(.white, for: .normal)
             del.selectedRow = senderRow
             del.selectedCol = senderCol
         }
