@@ -151,7 +151,10 @@ class ViewController: UIViewController {
         del = app.delegate as? AppDelegate
         
         nextButton.backgroundColor = .blue
+        //nextButton.layer.cornerRadius = 5
         prevButton.backgroundColor = .lightGray
+        //prevButton.layer.cornerRadius = 5
+        prevButton.isEnabled = false
         
         del.currentGameIndex = 0
         del.initPuzzleData()
@@ -184,7 +187,7 @@ class ViewController: UIViewController {
         }
         else{
             if won{
-                text += " was completed!"
+                text += " completed!"
             }
             else{
                 text += " is incorrect"

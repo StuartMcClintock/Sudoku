@@ -62,8 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setSelectedValue(val: Int){
         puzzleData[currentGameIndex].userVals[selectedRow!][selectedCol!] = val
+        let defaults = UserDefaults.standard
+        defaults.set(puzzleData[currentGameIndex].userVals, forKey:puzzleData[currentGameIndex].name)
     }
-    
     
     
     func initPuzzleData(){
@@ -104,7 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let solutions = [infoArr[12].components(separatedBy: ",").map{Int($0)!},infoArr[13].components(separatedBy: ",").map{Int($0)!},infoArr[14].components(separatedBy: ",").map{Int($0)!},infoArr[15].components(separatedBy: ",").map{Int($0)!},infoArr[16].components(separatedBy: ",").map{Int($0)!},infoArr[17].components(separatedBy: ",").map{Int($0)!},infoArr[18].components(separatedBy: ",").map{Int($0)!},infoArr[19].components(separatedBy: ",").map{Int($0)!},infoArr[20].components(separatedBy: ",").map{Int($0)!}]
             
-            let newPuzzle = Puzzle(gvn: givenVals, sol: solutions, uv: givenVals, d: diff, n: name)
+            let defaults = UserDefaults.standard
+            var userVals: [[Int]]? = defaults.array(forKey: name) as! [[Int]]?
+            if userVals == nil{
+                userVals = givenVals
+            }
+            
+            let newPuzzle = Puzzle(gvn: givenVals, sol: solutions, uv: userVals!, d: diff, n: name)
             puzzleData.append(newPuzzle)
             
             
