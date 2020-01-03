@@ -17,13 +17,20 @@ import UIKit
     
     @IBOutlet weak var gameStateLabel: UILabel!
     @IBOutlet weak var puzzleWindow: UIView!
+    
     @available(iOS 13.0, *)
     @IBAction func showNewGamePopup(_ sender: Any) {
-        let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewGamePopup")
-        self.addChild(popoverVC)
-        popoverVC.view.frame = self.view.frame
-        self.view.addSubview(popoverVC.view)
-        popoverVC.didMove(toParent: self)
+        if (UIStoryboard(name: "Main", bundle: nil).responds(to: Selector("instantiateViewController"))){
+            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewGamePopup")
+            self.addChild(popoverVC)
+            popoverVC.view.frame = self.view.frame
+            self.view.addSubview(popoverVC.view)
+            popoverVC.didMove(toParent: self)
+        }
+        else{
+            del.reset()
+            checkForWin()
+        }
     }
     
 
@@ -136,7 +143,7 @@ import UIKit
                 
                 currentButton.backgroundColor = .white
                 currentButton.layer.borderWidth = 1.0
-                currentButton.layer.borderColor = .init(srgbRed: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+                //currentButton.layer.borderColor = CGColor(srgbRed: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
                 currentButton.frame = CGRect(x:col%3*32, y:row%3*32, width: 32, height: 32)
                 currentButton.tag = Int(String(row)+String(col))!
                 currentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
