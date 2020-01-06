@@ -20,17 +20,8 @@ import UIKit
     
     @available(iOS 13.0, *)
     @IBAction func showNewGamePopup(_ sender: Any) {
-        if (UIStoryboard(name: "Main", bundle: nil).responds(to: Selector("instantiateViewController"))){
-            let popoverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "NewGamePopup")
-            self.addChild(popoverVC)
-            popoverVC.view.frame = self.view.frame
-            self.view.addSubview(popoverVC.view)
-            popoverVC.didMove(toParent: self)
-        }
-        else{
-            del.reset()
-            checkForWin()
-        }
+        del.reset()
+        checkForWin()
     }
     
 
